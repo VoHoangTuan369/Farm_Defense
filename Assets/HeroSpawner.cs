@@ -36,7 +36,6 @@ public class HeroSpawner : MonoBehaviour
         if (newHero != null)
         {
             Vector3 newPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-            newPosition.z = 0;
             newHero.position = newPosition;
         }
     }
@@ -49,7 +48,7 @@ public class HeroSpawner : MonoBehaviour
         if (hitCollider && hitCollider.transform.childCount == 0)
         {
             newHero.SetParent(hitCollider.transform.transform, worldPositionStays: true);
-            newHero.localPosition = Vector3.zero;
+            newHero.localPosition = new Vector3(0, 0, -1);
             gold.RemoveGold(hero.goldToBuy);
 
             // temporarily disable mouse click event on HeroSpawner

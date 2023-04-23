@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Instantiate(enemyPrefab, transform.position + Vector3.back, Quaternion.identity);
         currentEnemyCount++; //Tăng giá trị biến currentEnemyCount
     }
 }
