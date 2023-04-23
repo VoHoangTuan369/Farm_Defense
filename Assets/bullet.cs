@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,7 @@ public class bullet : MonoBehaviour
     // Start is called before the first frame update
     public float speed;
     public float timeToDestroy;
+    public float damageAmount;
     Rigidbody2D m_rb;
     void Start()
     {
@@ -18,5 +19,17 @@ public class bullet : MonoBehaviour
     void Update()
     {
         m_rb.velocity = Vector2.right * speed;
+    }
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("take dame");
+            // Giảm máu của enemy đi một giá trị nào đó.
+            col.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
+
+            // Hủy đối tượng bullet của bạn.
+            Destroy(gameObject);
+        }
     }
 }
