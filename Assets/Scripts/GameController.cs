@@ -51,9 +51,12 @@ public class GameController : MonoBehaviour
         {
             Destroy(enemySpawner.gameObject);
         }
-        StartCoroutine(LoadSceneAfterDelay("LevelScene", 5f));
+        BackToLevelSceneAfter5seconds();
     }
-    IEnumerator LoadSceneAfterDelay(string sceneName, float delayTime)
+
+    public void BackToLevelSceneAfter5seconds() => StartCoroutine(LoadSceneAfterDelay("LevelScene", 5f));
+
+    private IEnumerator LoadSceneAfterDelay(string sceneName, float delayTime)
     {
         // Đợi một khoảng thời gian delayTime 
         yield return new WaitForSeconds(delayTime);

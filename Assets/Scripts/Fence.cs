@@ -9,6 +9,7 @@ public class Fence : MonoBehaviour
     private float currentHealth; // Máu hiện tại của đối tượng.
 
     public GameObject gameOverPanel;
+    public GameController gameController;
 
     void Start()
     {
@@ -44,15 +45,7 @@ public class Fence : MonoBehaviour
         {
             Destroy(hero.gameObject);
         }
+        gameController.BackToLevelSceneAfter5seconds();
         Destroy(gameObject);
-        StartCoroutine(LoadSceneAfterDelay("LevelScene", 5f));
-    }
-    IEnumerator LoadSceneAfterDelay(string sceneName, float delayTime)
-    {
-        // Đợi một khoảng thời gian delayTime 
-        yield return new WaitForSeconds(delayTime);
-
-        // Load một scene với tên sceneName
-        SceneManager.LoadScene(sceneName);
     }
 }
