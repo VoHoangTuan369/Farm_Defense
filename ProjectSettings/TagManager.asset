@@ -8,6 +8,7 @@ TagManager:
   - Target
   - Enemy
   - Fence
+  - IceBullet
   layers:
   - Default
   - TransparentFX

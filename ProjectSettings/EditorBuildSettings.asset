@@ -9,8 +9,38 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
+    path: Assets/Scenes/LevelScene.unity
+    guid: f132f0c0d0f410943ac86db33d6f46f7
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel1.unity
+    guid: b69881b016cc27f47b4d12581edd8466
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel2.unity
+    guid: c7e15d82a5d4ced469e18ad4afc2b247
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel3.unity
+    guid: 1f15e4e2a3c9ef74fb5186ceeead0539
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel4.unity
+    guid: 141b6065013e939448169b23200e899b
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel5.unity
+    guid: 18467be03b6501c4ab88cba5982bc5d9
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel6.unity
+    guid: 63e1f57580c2baf47a45a7fba54d9187
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel7.unity
+    guid: 9d11c7620cad1ca4d83ed423fc274f0b
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel8.unity
+    guid: 80891384a43f654479af43182c826ae9
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel9.unity
+    guid: f2efdb98c5d1fe5439dcb4971c4e126f
+  - enabled: 1
+    path: Assets/Scenes/SceneLevel10.unity
+    guid: 3feaa1ee33d710a42bacfe7f5b42f3d3
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 7c09c04dcbd281947938342fa89a35c8, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 2faf3c9fc7836034a80c60c416acb4c4, type: 2}
