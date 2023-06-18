@@ -13,8 +13,14 @@ public class EnemyBossAttack : MonoBehaviour
     public GameObject[] bullet;
     public GameObject bulletLaser;
     public Transform shootingPoint;
+    public Transform shootingPoint2;
+    private Animator anim;
 
     int bulletCounter = 0;
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         Shoot();
@@ -32,6 +38,7 @@ public class EnemyBossAttack : MonoBehaviour
                     return;
 
                 this.shootTimer = 0;
+                anim.SetBool("Shoot", true);
                 StartCoroutine(ShootBullets(bulletLaser));
                 bulletCounter++;
             }
@@ -48,11 +55,10 @@ public class EnemyBossAttack : MonoBehaviour
                         return;
 
                     this.shootTimer = 0;
-
                     // Duyệt qua từng loại đạn và bắn cùng một lúc
                     for (int i = 0; i < bullet.Length; i++)
                     {
-                        StartCoroutine(ShootBullets(bullet[i]));
+                        StartCoroutine(ShootBulletsRocket(bullet[i]));
                     }
                     bulletCounter++;
                 }
@@ -61,10 +67,23 @@ public class EnemyBossAttack : MonoBehaviour
     }
     IEnumerator ShootBullets(GameObject bullet)
     {
+        yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < bulletCount; i++)
         {
             Instantiate(bullet, shootingPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }
+        yield return new WaitForSeconds(0.3f);
+        anim.SetBool("Shoot", false);
+    }
+    IEnumerator ShootBulletsRocket(GameObject bullet)
+    {
+        anim.SetBool("ShootRocket", true);
+        for (int i = 0; i < bulletCount; i++)
+        {
+            Instantiate(bullet, shootingPoint2.position, Quaternion.identity);
+            yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
+        }
+        anim.SetBool("ShootRocket", false);
     }
 }

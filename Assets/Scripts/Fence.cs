@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Fence : MonoBehaviour
 {
@@ -10,15 +11,18 @@ public class Fence : MonoBehaviour
 
     public GameObject gameOverPanel;
     public GameController gameController;
+    public Image hpBar;
 
     void Start()
     {
         currentHealth = maxHealth; // Thiết lập máu ban đầu.
+        hpBar.fillAmount = 1f; // Set fill amount to 1 at start
     }
 
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount; // Giảm máu của đối tượng.
+        hpBar.fillAmount = currentHealth / maxHealth; // Update fill amount
 
         if (currentHealth <= 0)
         {

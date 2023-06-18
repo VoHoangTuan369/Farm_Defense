@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Fence
   - IceBullet
+  - HeroSpawner
   layers:
   - Default
   - TransparentFX

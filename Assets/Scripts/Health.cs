@@ -10,6 +10,7 @@ public class Health : MonoBehaviour
 
     public float maxHealth; // Máu tối đa của đối tượng.
     private float currentHealth; // Máu hiện tại của đối tượng.
+    private bool isDefeated = false;
     private GameController gameController;
 
     void Start()
@@ -57,20 +58,24 @@ public class Health : MonoBehaviour
 
     void Die()
     {
-        if (OnEnemyDestroy != null)
+        if (!isDefeated)
         {
-            OnEnemyDestroy();
+            if (OnEnemyDestroy != null)
+            {
+                OnEnemyDestroy();
+            }
+            if (transform.parent != null)
+            {
+                Destroy(transform.parent.gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            isDefeated = true;
+            SpawGold();         
+            gameController.SetTotalDefeatEnemy(gameController.GetTotalDefeatEnemy() + 1);
         }
-        if (transform.parent != null)
-        {
-            Destroy(transform.parent.gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        SpawGold();
-        gameController.SetTotalDefeatEnemy(gameController.GetTotalDefeatEnemy() + 1);
     }
     private void SpawGold()
     {

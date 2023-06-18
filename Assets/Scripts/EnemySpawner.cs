@@ -24,6 +24,10 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
             ResetNextSpawnTime();
         }
+        else if(currentEnemyCount >= maxEnemyCount)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void ResetNextSpawnTime()

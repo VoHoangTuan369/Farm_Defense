@@ -7,10 +7,15 @@ public class PoisonBullet : MonoBehaviour
     public float speed;
     public float timeToDestroy;
     public float damageAmount;
+    public bool isEggs = true;
     Rigidbody2D m_rb;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
+        if (isEggs)
+        {
+            m_rb.angularVelocity = (Random.value < 0.5) ? 90f : -90f;
+        }
         Destroy(gameObject, timeToDestroy);
     }
 
@@ -27,6 +32,11 @@ public class PoisonBullet : MonoBehaviour
             if (enemy != null)
             {
                 enemy.Poison(damageAmount, 2f);
+            }
+            Enemy ene = col.gameObject.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                ene.StartCoroutine(ene.SlowDown(0.3f, 1f));
             }
 
             // Hủy đối tượng bullet của bạn.

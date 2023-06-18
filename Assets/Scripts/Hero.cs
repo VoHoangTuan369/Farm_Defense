@@ -13,7 +13,12 @@ public class Hero : MonoBehaviour
     public GameObject bullet;
     public Transform shootingPoint;
     public int goldToBuy;
+    private Animator anim;
     // Update is called once per frame
+    private void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
     void Update()
     {
         Shoot();
@@ -37,7 +42,7 @@ public class Hero : MonoBehaviour
                         return;
 
                     this.shootTimer = 0;
-
+                    anim.SetBool("Shoot", true);
                     StartCoroutine(ShootBullets());
 
                     break;
@@ -52,5 +57,7 @@ public class Hero : MonoBehaviour
             Instantiate(bullet, shootingPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("Shoot", false);
     }
 }

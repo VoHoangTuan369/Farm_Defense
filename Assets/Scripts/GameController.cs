@@ -10,10 +10,15 @@ public class GameController : MonoBehaviour
     int totalDefeatedEnemies = 0;
 
     public GameObject winPanel;
+    public string levelUnclocked;
 
     public int GetTotalDefeatEnemy()
     {
         return totalDefeatedEnemies;
+    }
+    public int GetTotalMaxEnemyCount()
+    {
+        return totalMaxEnemyCount;
     }
     public void SetTotalDefeatEnemy(int value)
     {
@@ -46,17 +51,18 @@ public class GameController : MonoBehaviour
     {
         winPanel.SetActive(true);
 
+        PlayerPrefs.SetInt(levelUnclocked, 1);
+
         EnemySpawner[] enemySpawners = FindObjectsOfType<EnemySpawner>();
         foreach (EnemySpawner enemySpawner in enemySpawners)
         {
             Destroy(enemySpawner.gameObject);
         }
-        BackToLevelSceneAfter5seconds();
+        //BackToLevelSceneAfter5seconds();
     }
-
     public void BackToLevelSceneAfter5seconds() => StartCoroutine(LoadSceneAfterDelay("LevelScene", 5f));
 
-    private IEnumerator LoadSceneAfterDelay(string sceneName, float delayTime)
+    IEnumerator LoadSceneAfterDelay(string sceneName, float delayTime)
     {
         // Đợi một khoảng thời gian delayTime 
         yield return new WaitForSeconds(delayTime);

@@ -12,6 +12,7 @@ public class DestroyObjectButton : MonoBehaviour
         {
             Destroy(popupWindow);
             Destroy(ObjectToDestroy);
+            ObjectClickHandler.isPopupOpen = false;
         }
 
         //Destroy(this.gameObject);

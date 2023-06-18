@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748856340186606474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.79, y: 0.03, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.04, y: 0.047, z: 0.04}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 57ec6de73499ca84fb9d3af6ad2b2fd6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8fde726917b8124b83c02a6579eb1b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,9 +146,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5169878, y: 0.5254812}
-  m_Direction: 0
+  m_Offset: {x: 1.8094333, y: 0.36188424}
+  m_Size: {x: 29.145107, y: 17.999271}
+  m_Direction: 1
 --- !u!114 &-3097062982708254113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +164,4 @@ MonoBehaviour:
   speed: 10
   timeToDestroy: 1.7
   damageAmount: 2
+  isEggs: 1

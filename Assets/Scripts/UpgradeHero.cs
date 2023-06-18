@@ -23,6 +23,7 @@ public class UpgradeHero : MonoBehaviour
             Instantiate(newHero, oldHero.transform.position, Quaternion.identity);
             Destroy(popupWindow);
             gold.RemoveGold(hero.goldToBuy);
+            ObjectClickHandler.isPopupOpen = false;
         }
     }
 }

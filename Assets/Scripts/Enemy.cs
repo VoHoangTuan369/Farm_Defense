@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 
     private bool isTouchingFence = false;
     private float originalSpeed; // Tốc độ ban đầu của enemy.
+    private Animator anim;
 
     public float speed;
     public float damageAmount;
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
         originalSpeed = speed; // Lưu tốc độ ban đầu của enemy.
     }
 
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
             {
                 isTouchingFence = true;
                 m_rb.velocity = Vector2.left * 0;
+                anim.SetBool("Attack", true);
                 StartCoroutine(TakeDamageOverTime(col.gameObject.GetComponent<Fence>(), damageAmount));
             }
         }
@@ -52,6 +55,7 @@ public class Enemy : MonoBehaviour
         if (col.gameObject.CompareTag("Fence"))
         {
             Debug.Log("Enemy leaves the fence.");
+            anim.SetBool("Attack", false);
             isTouchingFence = false;
         }
     }
