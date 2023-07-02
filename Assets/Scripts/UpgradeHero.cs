@@ -24,8 +24,8 @@ public class UpgradeHero : MonoBehaviour
         {
             Destroy(oldHero);
             Instantiate(newHero, oldHero.transform.position, Quaternion.identity);
-            Instantiate(sound);
-            Destroy(sound, 1f);
+            GameObject soundInstance = Instantiate(sound);
+            Destroy(soundInstance, 1f);
             Destroy(popupWindow, 1f);
             gold.RemoveGold(hero.goldToBuy);
             ObjectClickHandler.isPopupOpen = false;

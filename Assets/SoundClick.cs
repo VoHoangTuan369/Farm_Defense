@@ -7,7 +7,7 @@ public class SoundClick : MonoBehaviour
     public GameObject sound;
     public void TurnOnSound() 
     {
-        Instantiate(sound);
-        Destroy(sound, 1f);
+        GameObject soundInstance = Instantiate(sound);
+        Destroy(soundInstance, 1f);
     }
 }

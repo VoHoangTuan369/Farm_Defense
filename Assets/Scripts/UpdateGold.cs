@@ -32,8 +32,8 @@ public class UpdateGold : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Instantiate(sound);
-        Destroy(sound, 1f);
+        GameObject soundInstance = Instantiate(sound);
+        Destroy(soundInstance, 1f);
         StartCoroutine(MoveToGoldPoint());
     }
 }
