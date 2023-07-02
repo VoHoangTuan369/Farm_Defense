@@ -9,7 +9,11 @@ public class TurnOffButton : MonoBehaviour
     public GameObject canvasPlay;
     public void OnClick() 
     {
+        PlayerPrefs.DeleteKey("PauseGame");
         panel.SetActive(false);
-        canvasPlay.SetActive(true);
+        if (canvasPlay)
+        {
+            canvasPlay.SetActive(true);
+        }
     }
 }

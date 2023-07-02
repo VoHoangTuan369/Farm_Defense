@@ -5,14 +5,17 @@ using UnityEngine;
 public class UpgradeHero : MonoBehaviour
 {
     private Gold gold;
+    private SoundClick soundClick;
 
     public GameObject oldHero;
     public GameObject newHero;
     public GameObject popupWindow;
     public Hero hero;
+    public GameObject sound;
     private void Start()
     {
         gold = FindObjectOfType<Gold>();
+        soundClick = FindObjectOfType<SoundClick>();
     }
 
     public void OnClick()
@@ -21,9 +24,12 @@ public class UpgradeHero : MonoBehaviour
         {
             Destroy(oldHero);
             Instantiate(newHero, oldHero.transform.position, Quaternion.identity);
-            Destroy(popupWindow);
+            Instantiate(sound);
+            Destroy(sound, 1f);
+            Destroy(popupWindow, 1f);
             gold.RemoveGold(hero.goldToBuy);
             ObjectClickHandler.isPopupOpen = false;
+            soundClick.TurnOnSound();
         }
     }
 }

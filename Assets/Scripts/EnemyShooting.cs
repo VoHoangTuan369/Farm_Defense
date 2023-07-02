@@ -12,9 +12,24 @@ public class EnemyShooting : MonoBehaviour
 
     public GameObject bullet;
     public Transform shootingPoint;
+    public AudioClip soundAttack;
+
+    private AudioSource audioSource;
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundAttack;
+    }
     void Update()
     {
-        Shoot();
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
+        {
+        }
+        else
+        {
+            Shoot();
+        }
     }
     public void Shoot()
     {
@@ -34,6 +49,10 @@ public class EnemyShooting : MonoBehaviour
     {
         for (int i = 0; i < bulletCount; i++)
         {
+            if (audioSource && soundAttack)
+            {
+                audioSource.PlayOneShot(soundAttack);
+            }
             Instantiate(bullet, shootingPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }

@@ -27,7 +27,7 @@ public class PlayGame : MonoBehaviour
             }
             foreach (GameObject obj in setUpGame)
             {
-                obj.SetActive(false);
+                Destroy(obj);
             }
         }
     }

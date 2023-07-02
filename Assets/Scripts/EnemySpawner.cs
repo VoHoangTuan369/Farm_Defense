@@ -24,10 +24,10 @@ public class EnemySpawner : MonoBehaviour
             SpawnEnemy();
             ResetNextSpawnTime();
         }
-        else if(currentEnemyCount >= maxEnemyCount)
+        else if (currentEnemyCount >= maxEnemyCount)
         {
             Destroy(gameObject);
-        }
+        }       
     }
 
     void ResetNextSpawnTime()
@@ -37,8 +37,14 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        int index = Random.Range(0, enemyPrefabs.Length); // Chọn ngẫu nhiên một prefab từ mảng các prefab.
-        Instantiate(enemyPrefabs[index], transform.position + Vector3.back, Quaternion.identity);
-        currentEnemyCount++;
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
+        {
+        }
+        else
+        {
+            int index = Random.Range(0, enemyPrefabs.Length); // Chọn ngẫu nhiên một prefab từ mảng các prefab.
+            Instantiate(enemyPrefabs[index], transform.position + Vector3.back, Quaternion.identity);
+            currentEnemyCount++;
+        }
     }
 }

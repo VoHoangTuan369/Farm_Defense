@@ -14,13 +14,21 @@ public class SettingButton : MonoBehaviour
     {
         if (panel.activeSelf)
         {
+            PlayerPrefs.DeleteKey("PauseGame");
             panel.SetActive(false);
-            canvasPlay.SetActive(true);
+            if (canvasPlay)
+            {
+                canvasPlay.SetActive(true);
+            }
         }
         else
         {
+            PlayerPrefs.SetInt("PauseGame", 1);
             panel.SetActive(true);
-            canvasPlay.SetActive(false);
+            if (canvasPlay)
+            {
+                canvasPlay.SetActive(false);
+            }
         }
     }
 }

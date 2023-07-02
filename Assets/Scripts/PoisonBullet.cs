@@ -8,6 +8,7 @@ public class PoisonBullet : MonoBehaviour
     public float timeToDestroy;
     public float damageAmount;
     public bool isEggs = true;
+    public GameObject hitSound;
     Rigidbody2D m_rb;
     void Start()
     {
@@ -22,13 +23,21 @@ public class PoisonBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_rb.velocity = Vector2.right * speed;
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
+        {
+            m_rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            m_rb.velocity = Vector2.right * speed;
+        }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
             Health enemy = col.gameObject.GetComponent<Health>();
+            Instantiate(hitSound, this.transform.position, Quaternion.identity);
             if (enemy != null)
             {
                 enemy.Poison(damageAmount, 2f);

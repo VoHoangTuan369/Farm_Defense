@@ -8,6 +8,7 @@ public class IceBullet : MonoBehaviour
     public float timeToDestroy;
     public float damageAmount;
     public bool isEggs = true;
+    public GameObject hitSound;
     Rigidbody2D m_rb;
     void Start()
     {
@@ -21,16 +22,23 @@ public class IceBullet : MonoBehaviour
 
     void Update()
     {
-        m_rb.velocity = Vector2.right * speed;
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
+        {
+            m_rb.velocity = Vector2.zero;
+        }
+        else
+        {
+            m_rb.velocity = Vector2.right * speed;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("Take damage");
             // Giảm máu của enemy đi một giá trị nào đó.
             col.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
+            Instantiate(hitSound, this.transform.position, Quaternion.identity);
 
             // Nếu enemy là một instance của class Enemy, gọi hàm coroutine SlowDown để chậm enemy trong thời gian nhất định.
             Enemy enemy = col.gameObject.GetComponent<Enemy>();

@@ -6,10 +6,19 @@ public class ThunderBullet : MonoBehaviour
 {
     public float timeToDestroy;
     public float damageAmount;
+    public AudioClip soundHit;
     Rigidbody2D m_rb;
+
+    private AudioSource audioSource;
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundHit;
+        if (audioSource && soundHit)
+        {
+            audioSource.PlayOneShot(soundHit);
+        }
         Destroy(gameObject, timeToDestroy);
     }
 

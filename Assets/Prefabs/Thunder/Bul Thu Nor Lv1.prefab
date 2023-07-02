@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 1748856340186606474}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.03, y: 0.037, z: 0.03}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.02, y: 0.024666667, z: 0.02}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -165,3 +165,5 @@ MonoBehaviour:
   speed: 10
   timeToDestroy: 1.7
   damageAmount: 0
+  isEggs: 1
+  hitSound: {fileID: 281205460416346561, guid: ce818c2f7312d754ba49b26539475d56, type: 3}

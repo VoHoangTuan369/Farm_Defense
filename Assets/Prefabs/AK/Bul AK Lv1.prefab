@@ -130,6 +130,7 @@ MonoBehaviour:
   timeToDestroy: 5
   damageAmount: 2
   isEggs: 0
+  hitSound: {fileID: 281205460416346561, guid: ce818c2f7312d754ba49b26539475d56, type: 3}
 --- !u!61 &8772181096545357145
 BoxCollider2D:
   m_ObjectHideFlags: 0

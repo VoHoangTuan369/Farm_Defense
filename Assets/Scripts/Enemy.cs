@@ -14,37 +14,53 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float damageAmount;
     public Rigidbody2D m_rb;
+    public bool isGun = false;
+    public AudioClip soundAttack;
+
+    private AudioSource audioSource;
 
     void Start()
     {
         m_rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         originalSpeed = speed; // Lưu tốc độ ban đầu của enemy.
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundAttack;
     }
 
     void Update()
     {
-        if (isTouchingFence == false)
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
         {
-            // Nếu không bị chậm thì di chuyển với tốc độ ban đầu.
-            m_rb.velocity = Vector2.left * speed;
+            m_rb.velocity = Vector2.zero;
         }
-        if (slowedTime <= 0f)
+        else
         {
-            return;
-        }
+            if (isTouchingFence == false)
+            {
+                // Nếu không bị chậm thì di chuyển với tốc độ ban đầu.
+                m_rb.velocity = Vector2.left * speed;
+            }
+            if (slowedTime <= 0f)
+            {
+                return;
+            }
+        }       
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("Fence"))
         {
-            Debug.Log("Enemy hits the fence.");
-            if (!isTouchingFence)
+            if (!isTouchingFence && isGun == false)
             {
                 isTouchingFence = true;
                 m_rb.velocity = Vector2.left * 0;
                 anim.SetBool("Attack", true);
+                if (audioSource && soundAttack)
+                {
+                    audioSource.Play();
+                }
                 StartCoroutine(TakeDamageOverTime(col.gameObject.GetComponent<Fence>(), damageAmount));
             }
         }
@@ -52,11 +68,11 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Fence"))
+        if (col.gameObject.CompareTag("Fence") && isGun == false)
         {
-            Debug.Log("Enemy leaves the fence.");
             anim.SetBool("Attack", false);
             isTouchingFence = false;
+            audioSource.Stop();
         }
     }
 

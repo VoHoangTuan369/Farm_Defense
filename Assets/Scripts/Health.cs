@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
     public GameObject goldPrefab;
     public delegate void EnemyDestroyEventHandler();
     public static event EnemyDestroyEventHandler OnEnemyDestroy;
+    public GameObject animDie;
 
     public float maxHealth; // Máu tối đa của đối tượng.
     private float currentHealth; // Máu hiện tại của đối tượng.
@@ -22,7 +23,6 @@ public class Health : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         currentHealth -= damageAmount; // Giảm máu của đối tượng.
-
         if (currentHealth <= 0)
         {
             Die();
@@ -73,6 +73,7 @@ public class Health : MonoBehaviour
                 Destroy(gameObject);
             }
             isDefeated = true;
+            SpawAnimDie();
             SpawGold();         
             gameController.SetTotalDefeatEnemy(gameController.GetTotalDefeatEnemy() + 1);
         }
@@ -81,5 +82,10 @@ public class Health : MonoBehaviour
     {
         Vector3 spawnPosition = transform.position + new Vector3(0, 0, -2); // Tạo một vector mới với cùng X,Y như vị trí hiện tại và Z giảm đi 2.
         GameObject gold = Instantiate(goldPrefab, spawnPosition, Quaternion.identity);
+    }
+    private void SpawAnimDie()
+    {
+        Vector3 spawnPosition = transform.position + new Vector3(0, 0, -3);
+        GameObject animAlienDie = Instantiate(animDie, spawnPosition, Quaternion.identity);
     }
 }

@@ -7,16 +7,33 @@ public class UpdateGold : MonoBehaviour
     private Gold gold;
 
     public int goldValue; // Số vàng của đồng tiền này.
+    public Transform goldPoint;
+    public GameObject sound;
     private void Start()
     {
         // Lấy reference tới đối tượng chứa script Gold.
         gold = FindObjectOfType<Gold>();
     }
 
+    private IEnumerator MoveToGoldPoint()
+    {
+        while (transform.position != goldPoint.position)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, goldPoint.position, 10f * Time.deltaTime);
+            yield return null;
+        }
+        // Tăng giá trị vàng
+        if (transform.position == goldPoint.position)
+        {
+            gold.AddGold(goldValue);
+            Destroy(gameObject);
+        }
+    }
+
     private void OnMouseDown()
     {
-        Debug.Log("Gold");
-        gold.AddGold(goldValue);
-        Destroy(gameObject);
+        Instantiate(sound);
+        Destroy(sound, 1f);
+        StartCoroutine(MoveToGoldPoint());
     }
 }

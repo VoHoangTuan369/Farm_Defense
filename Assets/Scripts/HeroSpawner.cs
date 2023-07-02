@@ -12,15 +12,19 @@ public class HeroSpawner : MonoBehaviour
     private Transform newHero;
     private Camera mainCamera;
     private Gold gold;
+    private AudioSource audioSource;
 
     public Hero hero;
     public Image cooldown;
+    public AudioClip soundInit;
 
     private void Start()
     {
         mainCamera = Camera.main;
         // assign the reference to an instance of the Gold class
         gold = FindObjectOfType<Gold>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = soundInit;
     }
 
     private void OnMouseDown() 
@@ -48,26 +52,32 @@ public class HeroSpawner : MonoBehaviour
 
     private void OnMouseUp()
     {
-
-        Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-
-        var hitCollider = Physics2D.OverlapCircle(mousePosition, 0.1f, cellMask);
-        if (hitCollider && hitCollider.transform.childCount == 0)
+        if (newHero)
         {
-            newHero.SetParent(hitCollider.transform.transform, worldPositionStays: true);
-            newHero.localPosition = new Vector3(0, 0, -1);
-            gold.RemoveGold(hero.goldToBuy);
+            Vector2 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            // temporarily disable mouse click event on HeroSpawner
-            GetComponent<Collider2D>().enabled = false;
-            // start coroutine to reset the HeroSpawner sprite after 5 seconds
-            StartCoroutine(ResetHeroSpawnerSprite());
+            var hitCollider = Physics2D.OverlapCircle(mousePosition, 0.1f, cellMask);
+            if (hitCollider && hitCollider.transform.childCount == 0)
+            {
+                newHero.SetParent(hitCollider.transform.transform, worldPositionStays: true);
+                newHero.localPosition = new Vector3(0, 0, -1);
+                gold.RemoveGold(hero.goldToBuy);
+                if (audioSource && soundInit)
+                {
+                    audioSource.PlayOneShot(soundInit);
+                }
+
+                // temporarily disable mouse click event on HeroSpawner
+                GetComponent<Collider2D>().enabled = false;
+                // start coroutine to reset the HeroSpawner sprite after 5 seconds
+                StartCoroutine(ResetHeroSpawnerSprite());
+            }
+            else
+            {
+                Destroy(newHero.gameObject);
+            }
+            newHero = null;
         }
-        else
-        {
-            Destroy(newHero.gameObject);
-        }
-        newHero = null;
     }
     private IEnumerator ResetHeroSpawnerSprite()
     {

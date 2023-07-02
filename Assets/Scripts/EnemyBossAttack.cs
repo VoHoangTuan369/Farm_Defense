@@ -16,14 +16,26 @@ public class EnemyBossAttack : MonoBehaviour
     public Transform shootingPoint2;
     private Animator anim;
 
+    public AudioClip soundAttack;
+    public AudioClip soundLaser;
+
+    private AudioSource audioSource;
+
     int bulletCounter = 0;
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
     void Update()
     {
-        Shoot();
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
+        {
+        }
+        else
+        {
+            Shoot();
+        }
     }
     public void Shoot()
     {
@@ -70,6 +82,10 @@ public class EnemyBossAttack : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         for (int i = 0; i < bulletCount; i++)
         {
+            if (audioSource && soundLaser)
+            {
+                audioSource.PlayOneShot(soundLaser);
+            }
             Instantiate(bullet, shootingPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }
@@ -81,6 +97,10 @@ public class EnemyBossAttack : MonoBehaviour
         anim.SetBool("ShootRocket", true);
         for (int i = 0; i < bulletCount; i++)
         {
+            if (audioSource && soundAttack)
+            {
+                audioSource.PlayOneShot(soundAttack);
+            }
             Instantiate(bullet, shootingPoint2.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }
