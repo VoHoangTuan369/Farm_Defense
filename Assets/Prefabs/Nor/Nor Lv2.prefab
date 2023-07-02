@@ -220,7 +220,7 @@ MonoBehaviour:
   bullet: {fileID: 1748856340186606474, guid: c31e075d144a12b438a209fd42012f78, type: 3}
   shootingPoint: {fileID: 1509492818721164250}
   goldToBuy: 30
-  soundShoot: {fileID: 8300000, guid: 023baeb5f3bc80043864076452ded3b4, type: 3}
+  shootSoundId: 2
 --- !u!61 &316026753140971750
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -654,6 +654,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0

@@ -13,7 +13,7 @@ public class Hero : MonoBehaviour
     public GameObject bullet;
     public Transform shootingPoint;
     public int goldToBuy;
-    public AudioClip soundShoot;
+    public SoundId shootSoundId;
 
     private Animator anim;
     private AudioSource audioSource;
@@ -22,7 +22,6 @@ public class Hero : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = soundShoot;
     }
     void Update()
     {
@@ -66,10 +65,7 @@ public class Hero : MonoBehaviour
     {
         for (int i = 0; i < bulletCount; i++)
         {
-            if (audioSource && soundShoot)
-            {
-                audioSource.PlayOneShot(soundShoot);
-            }
+            SoundManager.Instance.PlaySound(shootSoundId);
             Instantiate(bullet, shootingPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }

@@ -9,7 +9,7 @@ public class bullet : MonoBehaviour
     public float timeToDestroy;
     public float damageAmount;
     public bool isEggs = true;
-    public GameObject hitSound;
+    public SoundId hitSoundId;
     Rigidbody2D m_rb;
 
     void Start()
@@ -40,7 +40,7 @@ public class bullet : MonoBehaviour
         {
             // Giảm máu của enemy đi một giá trị nào đó.
             col.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
-            Instantiate(hitSound, this.transform.position, Quaternion.identity);
+            SoundManager.Instance.PlaySound(hitSoundId);
             Destroy(gameObject);
 
             // Hủy đối tượng bullet của bạn.            
