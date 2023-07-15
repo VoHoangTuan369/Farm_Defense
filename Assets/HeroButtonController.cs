@@ -9,7 +9,7 @@ public class HeroButtonController : MonoBehaviour
 
     void Start()
     {
-        if (PlayerPrefs.GetInt("Level2Unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt("FireUnlocked", 0) == 1)
         {
             heroButtons[1].interactable = true;
         }
@@ -17,7 +17,7 @@ public class HeroButtonController : MonoBehaviour
         {
             heroButtons[1].interactable = false;
         }
-        if (PlayerPrefs.GetInt("Level4Unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt("IceUnlocked", 0) == 1)
         {
             heroButtons[2].interactable = true;
         }
@@ -25,7 +25,7 @@ public class HeroButtonController : MonoBehaviour
         {
             heroButtons[2].interactable = false;
         }
-        if (PlayerPrefs.GetInt("Level6Unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt("ThunderUnlocked", 0) == 1)
         {
             heroButtons[3].interactable = true;
         }
@@ -33,7 +33,7 @@ public class HeroButtonController : MonoBehaviour
         {
             heroButtons[3].interactable = false;
         }
-        if (PlayerPrefs.GetInt("Level8Unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt("PoisonUnlocked", 0) == 1)
         {
             heroButtons[4].interactable = true;
         }
@@ -41,7 +41,7 @@ public class HeroButtonController : MonoBehaviour
         {
             heroButtons[4].interactable = false;
         }
-        if (PlayerPrefs.GetInt("Level9Unlocked", 0) == 1)
+        if (PlayerPrefs.GetInt("AKUnlocked", 0) == 1)
         {
             heroButtons[5].interactable = true;
         }

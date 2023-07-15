@@ -21,6 +21,7 @@ public class PlayGame : MonoBehaviour
 
         if (allSlotsHaveChild)
         {
+            PlayerPrefs.DeleteKey("PauseGame");
             foreach (GameObject obj in mapGame)
             {
                 obj.SetActive(true);

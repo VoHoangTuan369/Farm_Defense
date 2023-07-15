@@ -165,4 +165,4 @@ MonoBehaviour:
   timeToDestroy: 1.7
   damageAmount: 1
   isEggs: 1
-  hitSoundId: 1
+  hitSound: {fileID: 281205460416346561, guid: ce818c2f7312d754ba49b26539475d56, type: 3}

@@ -40,6 +40,20 @@ public class IceBullet : MonoBehaviour
             col.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
             Instantiate(hitSound, this.transform.position, Quaternion.identity);
 
+            // Thay đổi màu của enemy sang màu xanh dương trong vòng 1 giây.
+            Renderer enemyRenderer = col.gameObject.GetComponent<Renderer>();
+            if (enemyRenderer != null)
+            {
+                // Lưu trữ màu gốc của enemy.
+                Color originalColor = enemyRenderer.material.color;
+
+                // Đặt màu xanh dương cho enemy.
+                enemyRenderer.material.color = new Color(0, 1, 1);
+
+                // Sử dụng Coroutine để chờ 1 giây rồi khôi phục màu gốc của enemy.
+                StartCoroutine(ResetColor(enemyRenderer, originalColor, 1f));
+            }
+
             // Nếu enemy là một instance của class Enemy, gọi hàm coroutine SlowDown để chậm enemy trong thời gian nhất định.
             Enemy enemy = col.gameObject.GetComponent<Enemy>();
             if (enemy != null)
@@ -50,5 +64,11 @@ public class IceBullet : MonoBehaviour
             // Hủy đối tượng bullet của bạn.
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator ResetColor(Renderer renderer, Color originalColor, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        renderer.material.color = originalColor;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LevelButtonController : MonoBehaviour
 {
-    public Button[] levelButtons; //Tham chiếu tới button level 2
+    public Button[] levelButtons;
 
     void Start()
     {

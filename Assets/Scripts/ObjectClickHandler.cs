@@ -29,7 +29,6 @@ public class ObjectClickHandler : MonoBehaviour
                     // Nếu popupWindow chưa hiển thị, tiếp tục hiển thị như cũ.
                     if (Input.GetMouseButtonDown(0))
                     {
-                        Debug.Log("window");
                         popupWindow.SetActive(true);
                         Vector2 mousePosition = Input.mousePosition;
                         Vector2 viewportPoint = Camera.main.ScreenToViewportPoint(mousePosition);

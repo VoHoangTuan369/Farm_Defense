@@ -33,9 +33,11 @@ public class Enemy : MonoBehaviour
         if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
         {
             m_rb.velocity = Vector2.zero;
+            audioSource.volume = 0f;
         }
         else
         {
+            audioSource.volume = 0.5f;
             if (isTouchingFence == false)
             {
                 // Nếu không bị chậm thì di chuyển với tốc độ ban đầu.
@@ -50,6 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+
         if (col.gameObject.CompareTag("Fence"))
         {
             if (!isTouchingFence && isGun == false)

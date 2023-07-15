@@ -683,7 +683,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d64ba005860454ba8023719f05e831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameEnded: 0
+  finalWaveEnemyAmount: 0
+  minSpawnTimeNew: 0
+  maxSpawnTimeNew: 0
   winPanel: {fileID: 1018373402}
+  warningPanel: {fileID: 0}
+  levelUnclocked: 
+  moneyGet: 0
   enemySpawners:
   - {fileID: 2041533203}
   - {fileID: 1365920252}
@@ -1018,6 +1025,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: 7617ca64c1fb1b24e83c93b9c99084ef, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!61 &476263004
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1750,6 +1759,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: 17c68e1251ed3b947a58fb69030a30d9, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!1 &540589098
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1909,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: a50e98eb10e8c48469bccabbf0518a45, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!1 &543625073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3090,6 +3103,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: 6ab975a464916c64ca2221a36348eb39, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!1 &1018373402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3315,6 +3330,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: 55a721d49e6bf4c4c82495e9e3bb8e8b, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!1 &1074471864
 GameObject:
   m_ObjectHideFlags: 0
@@ -3501,6 +3518,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   hero: {fileID: 6428536188242200070, guid: d6d40c586a0f9af4b9e1a3d45f2ccebf, type: 3}
+  cooldown: {fileID: 0}
+  soundInit: {fileID: 0}
 --- !u!1 &1200121323
 GameObject:
   m_ObjectHideFlags: 0
@@ -4446,6 +4465,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   gameOverPanel: {fileID: 1200451708}
+  gameController: {fileID: 0}
+  hpBar: {fileID: 0}
 --- !u!1 &1617559214
 GameObject:
   m_ObjectHideFlags: 0

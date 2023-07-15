@@ -21,13 +21,19 @@ public class Fence : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        currentHealth -= damageAmount; // Giảm máu của đối tượng.
-        hpBar.fillAmount = currentHealth / maxHealth; // Update fill amount
-
-        if (currentHealth <= 0)
+        if (PlayerPrefs.GetInt("PauseGame", 0) == 1)
         {
-            Die();
-            gameOverPanel.SetActive(true);
+        }
+        else
+        {
+            currentHealth -= damageAmount; // Giảm máu của đối tượng.
+            hpBar.fillAmount = currentHealth / maxHealth; // Update fill amount
+
+            if (currentHealth <= 0)
+            {
+                Die();
+                gameOverPanel.SetActive(true);
+            }
         }
     }
 
@@ -49,6 +55,7 @@ public class Fence : MonoBehaviour
         {
             Destroy(hero.gameObject);
         }
+        gameController.gameEnded = true;
         gameController.BackToLevelSceneAfter5seconds();
         Destroy(gameObject);
     }

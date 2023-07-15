@@ -11,6 +11,7 @@ public class TurnOffButton : MonoBehaviour
     {
         PlayerPrefs.DeleteKey("PauseGame");
         panel.SetActive(false);
+        HeroInforButton.isPanelOpen = false;
         if (canvasPlay)
         {
             canvasPlay.SetActive(true);

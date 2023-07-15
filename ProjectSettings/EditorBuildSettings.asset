@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HomeScene.unity
     guid: 3ca7cb7b31f1889478faaa4426aaa9e2
   - enabled: 1
+    path: Assets/Scenes/CollectionScene.unity
+    guid: dd0420602fd6c5343aaf094cf15a0877
+  - enabled: 1
     path: Assets/Scenes/LevelScene.unity
     guid: f132f0c0d0f410943ac86db33d6f46f7
   - enabled: 1

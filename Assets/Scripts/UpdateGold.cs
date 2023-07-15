@@ -25,7 +25,6 @@ public class UpdateGold : MonoBehaviour
         // Tăng giá trị vàng
         if (transform.position == goldPoint.position)
         {
-            gold.AddGold(goldValue);
             Destroy(gameObject);
         }
     }
@@ -34,6 +33,7 @@ public class UpdateGold : MonoBehaviour
     {
         GameObject soundInstance = Instantiate(sound);
         Destroy(soundInstance, 1f);
+        gold.AddGold(goldValue);
         StartCoroutine(MoveToGoldPoint());
     }
 }

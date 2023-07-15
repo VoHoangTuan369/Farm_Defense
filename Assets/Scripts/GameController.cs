@@ -1,16 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    bool gameEnded = false;
+    public bool gameEnded = false;
     int totalMaxEnemyCount = 0;
     int totalDefeatedEnemies = 0;
+    public int finalWaveEnemyAmount;
+    public float minSpawnTimeNew;
+    public float maxSpawnTimeNew;
 
     public GameObject winPanel;
+    public GameObject warningPanel;
     public string levelUnclocked;
+    public int moneyGet;
+    private int moneyText = 0;
+    public int GetMoneyText() 
+    {
+        return moneyText;
+    }
 
     public int GetTotalDefeatEnemy()
     {
@@ -30,7 +41,6 @@ public class GameController : MonoBehaviour
     void Start()
     {
         enemySpawners = FindObjectsOfType<EnemySpawner>();
-
         // Cập nhật totalMaxEnemyCount
         foreach (EnemySpawner spawner in enemySpawners)
         {
@@ -40,8 +50,27 @@ public class GameController : MonoBehaviour
 
     public void EnemyDefeated()
     {
-        if (totalDefeatedEnemies >= totalMaxEnemyCount && !gameEnded)
+        if (totalDefeatedEnemies >= finalWaveEnemyAmount && !gameEnded) 
         {
+            foreach (EnemySpawner spawner in enemySpawners)
+            {
+                spawner.minSpawnTime = minSpawnTimeNew;
+                spawner.maxSpawnTime = maxSpawnTimeNew;
+            }
+            warningPanel.SetActive(true);
+        }
+        if (totalDefeatedEnemies >= totalMaxEnemyCount && !gameEnded)
+        {                       
+            if (PlayerPrefs.GetInt(levelUnclocked, 0) == 1)
+            {
+                moneyText = moneyGet / 2;
+                Money.AddMoney(moneyGet / 2);
+            }
+            else
+            {
+                moneyText = moneyGet;
+                Money.AddMoney(moneyGet);
+            }
             WinGame();
             gameEnded = true;
         }
@@ -50,6 +79,10 @@ public class GameController : MonoBehaviour
     public void WinGame()
     {
         winPanel.SetActive(true);
+        if (warningPanel.activeSelf == true)
+        {
+            warningPanel.SetActive(false);
+        }       
 
         PlayerPrefs.SetInt(levelUnclocked, 1);
 
@@ -78,5 +111,6 @@ public class GameController : MonoBehaviour
         {
             EnemyDefeated();
         }
+        else warningPanel.SetActive(false);
     }
 }

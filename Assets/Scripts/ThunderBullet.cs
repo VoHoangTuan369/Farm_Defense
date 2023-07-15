@@ -27,7 +27,6 @@ public class ThunderBullet : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("take dame");
             // Giảm máu của enemy đi một giá trị nào đó.
             col.gameObject.GetComponent<Health>().TakeDamage(damageAmount);
         }

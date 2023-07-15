@@ -8,6 +8,12 @@ public class SceneChanger : MonoBehaviour
     public void OnClick()
     {
         PlayerPrefs.DeleteKey("PauseGame");
+        StartCoroutine(ChangeSceneAfterDelay(1f));
+    }
+
+    private IEnumerator ChangeSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         SceneManager.LoadScene(sceneName);
     }
 }
