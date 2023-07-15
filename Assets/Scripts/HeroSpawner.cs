@@ -83,17 +83,19 @@ public class HeroSpawner : MonoBehaviour
     {
         var image = cooldown.GetComponent<Image>();
         image.enabled = true;
-        cooldown.fillAmount = 0f;
+        cooldown.fillAmount = 1f; // Start with fillAmount set to 1f
         float counter = 0f;
-        while (counter < 5f)
+        float duration = 5f; // Duration in seconds
+
+        while (counter < duration)
         {
             counter += Time.deltaTime;
 
-            // lerp the fill amount from 0 to 1 over the duration of 5 seconds
-            float fillAmount = Mathf.Lerp(0f, 1f, counter / 5f);
+            // lerp the fill amount from 1 to 0 over the duration of 5 seconds
+            float fillAmount = Mathf.Lerp(1f, 0f, counter / duration);
             cooldown.fillAmount = fillAmount;
 
-            if (fillAmount >= 1f)
+            if (fillAmount <= 0f)
             {
                 // hide the `cooldown` object by disabling its renderer and collider components
                 image.enabled = false;

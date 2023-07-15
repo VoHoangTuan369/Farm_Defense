@@ -19,6 +19,10 @@ public class Health : MonoBehaviour
         currentHealth = maxHealth; // Thiết lập máu ban đầu.
         gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
     }
+    public float GetCurrenHealth() 
+    {
+        return currentHealth;
+    }
 
     public void TakeDamage(float damageAmount)
     {

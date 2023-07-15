@@ -14,16 +14,20 @@ public class EnemyBossAttack : MonoBehaviour
     public GameObject bulletLaser;
     public Transform shootingPoint;
     public Transform shootingPoint2;
+    public Transform[] movePoint;
     private Animator anim;
 
     public AudioClip soundAttack;
     public AudioClip soundLaser;
 
     private AudioSource audioSource;
+    private Health health;
+    private bool isMove = false;
 
     int bulletCounter = 0;
     void Start()
     {
+        health = GetComponent<Health>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
@@ -35,6 +39,10 @@ public class EnemyBossAttack : MonoBehaviour
         else
         {
             Shoot();
+        }
+        if (health.GetCurrenHealth() <= health.maxHealth / 3) 
+        {
+            BossRage();
         }
     }
     public void Shoot()
@@ -105,5 +113,28 @@ public class EnemyBossAttack : MonoBehaviour
             yield return new WaitForSeconds(delayBetweenBullets); // Delay để tạo ra viên đạn tiếp theo
         }
         anim.SetBool("ShootRocket", false);
+    }
+    void MoveToRandomPoint()
+    {
+        int randomIndex = Random.Range(0, movePoint.Length);
+        Transform randomPoint = movePoint[randomIndex];
+
+        // Gọi hàm di chuyển tới điểm ngẫu nhiên đã chọn
+        MoveToPoint(randomPoint.position);
+    }
+
+    void MoveToPoint(Vector3 point)
+    {
+        transform.position = point;
+    }
+    void BossRage() 
+    {
+        shootDelay = 2f;
+        bulletCount = 4;
+        if (isMove == false)
+        {
+            MoveToRandomPoint();
+            isMove = true;
+        }
     }
 }

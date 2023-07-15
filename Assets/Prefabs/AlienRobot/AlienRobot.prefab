@@ -210,8 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootDelay: 5
-  bulletCount: 3
-  delayBetweenBullets: 0.2
+  bulletCount: 2
+  delayBetweenBullets: 0.3
   bullet:
   - {fileID: 1748856340186606474, guid: 1f24d57cec8f5ab4fab276f18a4763b4, type: 3}
   - {fileID: 1748856340186606474, guid: b3c3d5e505c9eaa43988cc632f9548c7, type: 3}
@@ -219,6 +219,7 @@ MonoBehaviour:
   bulletLaser: {fileID: 1748856340186606474, guid: 5e45c93123f08534489bc5930900aa94, type: 3}
   shootingPoint: {fileID: 4090338197498948835}
   shootingPoint2: {fileID: 3814124719320012434}
+  movePoint: []
   soundAttack: {fileID: 8300000, guid: 5ca69806ad3563740869c10651b0baed, type: 3}
   soundLaser: {fileID: 8300000, guid: 9e32b4bd2ee8f3249a335fd1ff6b671c, type: 3}
 --- !u!95 &5242145264316847977
